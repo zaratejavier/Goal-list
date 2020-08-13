@@ -6,7 +6,7 @@ export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("")
   const [courseGoals, setCourseGoals] = useState([])
 
-  const handleChange = (enteredText) => {
+  const handleChange = (enteredText) => {  // it sets what the use enters into the courseGoals
     setEnteredGoal(enteredText)
   }
 
@@ -28,9 +28,9 @@ export default function App() {
       </View>
       <View>
         <View>
-
+          {/* We map over our array of items and display them to the screen */}
+          {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)} 
         </View>
-
       </View>
 
     </View>
