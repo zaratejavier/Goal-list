@@ -29,7 +29,10 @@ export default function App() {
       <View>
         <View>
           {/* We map over our array of items and display them to the screen */}
-          {courseGoals.map((goal) => <Text key={goal}>{goal}</Text>)} 
+          {courseGoals.map(goal =>
+            <View key={goal} style={styles.listItem}>
+              <Text >{goal}</Text>
+            </View>)} 
         </View>
       </View>
 
@@ -51,5 +54,12 @@ const styles = StyleSheet.create({
     borderBottomColor: "black",
     borderWidth: 1,
     padding: 10
+  },
+  listItem: {
+    padding: 10,
+    marginVertical: 10,
+    backgroundColor: '#ccc',
+    borderColor: 'black',
+    borderWidth: 1,
   }
 });
