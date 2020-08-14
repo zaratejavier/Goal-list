@@ -1,6 +1,6 @@
 
 import React, {useState} from 'react';
-import { StyleSheet, Text, View, Button, TextInput, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, Button, TextInput, ScrollView, FlatList } from 'react-native';
 
 export default function App() {
   const [enteredGoal, setEnteredGoal] = useState("")
@@ -12,7 +12,9 @@ export default function App() {
 
   const handleSubmit = () => {
     console.log(enteredGoal);
-    setCourseGoals([...courseGoals, enteredGoal]) // we create a new array and add all elements from the old array, then we add a new element which is the goal
+    setCourseGoals([...courseGoals, {
+      key: Math.random().toString(), value: enteredGoal
+    }]) // we create a new array and add all elements from the old array, then we add a new element which is the goal
   }
 
   return (
@@ -26,16 +28,14 @@ export default function App() {
         />
         <Button title="ADD" onPress={handleSubmit}/>
       </View>
-      <View>
-        <ScrollView>
-          {/* We map over our array of items and display them to the screen */}
-          {courseGoals.map(goal =>
-            <View key={goal} style={styles.listItem}>
-              <Text >{goal}</Text>
-            </View>)} 
-        </ScrollView>
-      </View>
-
+        <FlatList
+          data={courseGoals}
+          renderItem={itemData => (
+            <View style={styles.listItem}>
+              <Text >{itemData.item.value}</Text>
+            </View>
+          )}
+        />
     </View>
   );
 }
