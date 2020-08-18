@@ -8,6 +8,12 @@ const GoalForm = props => {
     setEnteredGoal(enteredText)
   }
 
+  const addGoalHandler = () => {
+    // props.onAddGoal(enteredGoal)
+    props.handleSubmit(enteredGoal)
+    setEnteredGoal('')
+  }
+
   return (
     <Modal visible={props.isAddMode} animationType="slide">
      <View style={styles.inputContainer}>
@@ -18,7 +24,11 @@ const GoalForm = props => {
           style={styles.input}
       />
       {/* enteredGoal will be sent to App.js and used in the handleSubmit function. Since we dont have that state in app.js anymore */}
-        <Button title="ADD" onPress={() => props.handleSubmit(enteredGoal)}/> 
+        {/* <Button title="ADD" onPress={() => props.handleSubmit(enteredGoal)}/>  */}
+        
+        <Button title="ADD" onPress={addGoalHandler}/> 
+        <Button title="CANCEL" color="red" onPress={props.onCancel} />
+        
       </View>
     </Modal>  
   )
