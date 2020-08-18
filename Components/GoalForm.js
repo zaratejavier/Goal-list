@@ -25,9 +25,14 @@ const GoalForm = props => {
       />
       {/* enteredGoal will be sent to App.js and used in the handleSubmit function. Since we dont have that state in app.js anymore */}
         {/* <Button title="ADD" onPress={() => props.handleSubmit(enteredGoal)}/>  */}
-        
-        <Button title="ADD" onPress={addGoalHandler}/> 
-        <Button title="CANCEL" color="red" onPress={props.onCancel} />
+        <View style={styles.buttonsContainer}>
+          <View style={styles.button}>
+            <Button title="ADD" onPress={addGoalHandler} />
+          </View> 
+          <View style={styles.button}>
+            <Button title="CANCEL" color="red" onPress={props.onCancel} />
+          </View>
+        </View>
         
       </View>
     </Modal>  
@@ -48,5 +53,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
   },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '60%'
+  },
+  button: {
+    width: '40%'
+  }
 })
 export default GoalForm
