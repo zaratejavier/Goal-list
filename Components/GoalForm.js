@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, TextInput, Button, StyleSheet } from "react-native"
+import { View, TextInput, Button, StyleSheet, Modal } from "react-native"
 
 const GoalForm = props => {
   const [enteredGoal, setEnteredGoal] = useState("")
@@ -9,6 +9,7 @@ const GoalForm = props => {
   }
 
   return (
+    <Modal visible={props.isAddMode} animationType="slide">
      <View style={styles.inputContainer}>
         <TextInput
           placeholder="Course Goal"
@@ -19,6 +20,7 @@ const GoalForm = props => {
       {/* enteredGoal will be sent to App.js and used in the handleSubmit function. Since we dont have that state in app.js anymore */}
         <Button title="ADD" onPress={() => props.handleSubmit(enteredGoal)}/> 
       </View>
+    </Modal>  
   )
 }
 
@@ -27,12 +29,14 @@ const styles = StyleSheet.create({
     width: '80%',
     borderBottomColor: "black",
     borderWidth: 1,
-    padding: 10
+    padding: 10,
+    marginBottom: 10,
+
   },
   inputContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
   },
 })
 export default GoalForm
